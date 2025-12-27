@@ -1,4 +1,4 @@
-package in.bushansirgur.billingsoftware.entity;
+package in.dhruvrajrana.billingsoftware.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

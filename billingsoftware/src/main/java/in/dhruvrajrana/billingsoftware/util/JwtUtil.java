@@ -1,4 +1,4 @@
-package in.bushansirgur.billingsoftware.util;
+package in.dhruvrajrana.billingsoftware.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package in.bushansirgur.billingsoftware.config;
+package in.dhruvrajrana.billingsoftware.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

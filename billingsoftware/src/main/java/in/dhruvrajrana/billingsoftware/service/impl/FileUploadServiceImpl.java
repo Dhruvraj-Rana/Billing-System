@@ -1,6 +1,6 @@
-package in.bushansirgur.billingsoftware.service.impl;
+package in.dhruvrajrana.billingsoftware.service.impl;
 
-import in.bushansirgur.billingsoftware.service.FileUploadService;
+import in.dhruvrajrana.billingsoftware.service.FileUploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -22,6 +22,8 @@ public class FileUploadServiceImpl implements FileUploadService {
 
     @Value("${aws.bucket.name}")
     private String bucketName;
+    @Value("${aws.region}")
+    private String region;
     private final S3Client s3Client;
 
     @Override
@@ -32,13 +34,12 @@ public class FileUploadServiceImpl implements FileUploadService {
             PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                     .bucket(bucketName)
                     .key(key)
-                    .acl("public-read")
                     .contentType(file.getContentType())
                     .build();
             PutObjectResponse response = s3Client.putObject(putObjectRequest, RequestBody.fromBytes(file.getBytes()));
 
             if (response.sdkHttpResponse().isSuccessful()) {
-                return "https://"+bucketName+".s3.amazonaws.com/"+key;
+                return "https://"+bucketName+".s3."+region+".amazonaws.com/"+key;
             } else {
                 throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "An error occured while uploading the image");
             }
